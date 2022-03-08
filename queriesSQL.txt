@@ -1,0 +1,22 @@
+CREATE TABLE "Users" (
+	"id"	INTEGER,
+	"first_name"	TEXT,
+	"last_name"	TEXT,
+	"email"	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+
+INSERT INTO Users (first_name, last_name, email) VALUES ("Augusto", "Aleman","augusto@tec.mx")
+
+CREATE TABLE "Party" (
+	"id"	INTEGER,
+	"user"	INTEGER,
+	"date"	TEXT,
+	"score"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("user") REFERENCES "Users"("id")
+);
+
+
+SELECT Users.first_name, Party.date, Party.score FROM Users JOIN Party ON Users.id = Party.user
